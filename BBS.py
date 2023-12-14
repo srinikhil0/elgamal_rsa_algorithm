@@ -1,6 +1,8 @@
 # Blum-Blum-Shub Pseudorandom Number Generator
 
-import random, basicFunctions
+import basicFunctions
+import random
+
 
 def find_initial_value(num):
     """
@@ -30,11 +32,11 @@ def get_bit(modulus):
     """
     initial_value = find_initial_value(modulus)
     s = initial_value
-    bits = []
-    for _ in range(modulus):
-        s = (s ** 2) % modulus
-        bits.append(s % 2)
-    return bits[-1]
+    iteration_count = 50  # Reduced number of iterations for efficiency
+    for _ in range(iteration_count):
+        s = pow(s, 2, modulus)  # More efficient squaring and modulo operation
+    return s % 2
+
 
 
 def generate_random_bits(count, p, q):
@@ -64,7 +66,3 @@ def random_number_generator():
     return int(bits, 2)
 
 
-# generating 24-bit long number
-# both p & q are prime numbers that also ≡ 3%4
-# In this example, p = 11, q = 23
-# print(RandGen())

@@ -16,9 +16,11 @@ def generate_a(n, pq, x):
     """
     arr0 = [random.randint(1, pq) for _ in range(n)]
     arr1 = [random.randint(1, pq) for _ in range(n)]
-    arr = [arr1[i] if bit == '1' else arr0[i] for i, bit in enumerate(bin(x)[2:].zfill(n))]
+    binary_x = bin(x)[2:].zfill(n)[-n:]  # Trim binary_x to ensure it's exactly n characters long
+    arr = [arr1[i] if bit == '1' else arr0[i] for i, bit in enumerate(binary_x)]
     arr_sum = sum(arr)
     return basicFunctions.improved_fast_exponent(arr_sum, pq, find_square(pq))
+
 
 
 def find_square(num):
@@ -102,14 +104,6 @@ def random_bit_string_generator():
         str: A random bit string.
     """
     return get_random_bits(24)
-
-
-
-# generating x-bits long number
-# n is a fixed number, x is a given number
-# both p & q are prime numbers
-# In this example, n = 6, p = 37, q = 47, x = 43
-# print(RandGen())
 
 
 

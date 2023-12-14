@@ -73,7 +73,3 @@ def generate_modulus(count, method):
     primes = generate_primes(count, method)
     return primes[0] * primes[1], primes[0], primes[1]
 
-
-# num = int(input("How many prime numbers you want:"))
-# change 2 to other numbers in order to get more or less prime numbers
-# print(getModulus(2, ))
